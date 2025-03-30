@@ -4,7 +4,6 @@ extends Sprite2D
 
 func _ready():
 	initialScale = scale
-	SongLoader.get_songs()
 	punch_loop()
 
 func _process(delta):

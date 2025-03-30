@@ -12,6 +12,6 @@ func _ready() -> void:
 		add_child(new_pack_container)
 		for song in songs[pack]:
 			var new_song_item = SONG_BUTTON.instantiate()
-			new_song_item.name = song
+			new_song_item.name = song.name
 			new_pack_container.get_child(0).add_child(new_song_item)
-			new_song_item.text = song
+			new_song_item.text = song.name
