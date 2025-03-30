@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bs0kyoli8e0fg"]
+
+[node name="song_button" type="Button"]
+clip_contents = true
+custom_minimum_size = Vector2(400, 50)
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "The LEGEnd of grooby"
+text_overrun_behavior = 3

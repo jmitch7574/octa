@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqtnn5npk7uux"]
+
+[ext_resource type="Script" uid="uid://5biej033r2fe" path="res://Scripts/main_menu.gd" id="1_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://bcvu088aag71v" path="res://octa_logo.png" id="1_28flt"]
+[ext_resource type="PackedScene" uid="uid://dmbcibq55ymqq" path="res://Resources/MainMenuButton/menu_button.tscn" id="2_48xlc"]
+[ext_resource type="Script" uid="uid://iflirx14h2tq" path="res://Scripts/octa_logo.gd" id="3_n45e2"]
+[ext_resource type="AudioStream" uid="uid://d36igf1o5a3c4" path="res://main-menu.wav" id="4_ce3w2"]
+[ext_resource type="Theme" uid="uid://chgucbdjf0cau" path="res://octaTheme.tres" id="6_opfnp"]
+[ext_resource type="Script" uid="uid://dxafs5mashgpq" path="res://Scripts/fill_songs.gd" id="7_yhxw7"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="ColorRect" parent="."]
+z_index = -2
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.0605294, 0.0901199, 0.203326, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -11.0
+offset_right = 1915.0
+offset_bottom = 128.0
+rotation = -0.0350164
+color = Color(0.0276939, 0.102486, 0.308731, 1)
+
+[node name="OctaLogo" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(173, 61)
+rotation = -0.00872665
+scale = Vector2(0.153333, 0.153333)
+texture = ExtResource("1_28flt")
+script = ExtResource("3_n45e2")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ce3w2")
+autoplay = true
+playback_type = 1
+
+[node name="menu_slide" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 2840.0
+offset_bottom = 1080.0
+script = ExtResource("1_1ehe0")
+
+[node name="main_menu" type="Control" parent="menu_slide"]
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="play_button" parent="menu_slide/main_menu" instance=ExtResource("2_48xlc")]
+layout_mode = 0
+offset_left = -110.0
+offset_top = 200.0
+offset_right = 490.0
+offset_bottom = 280.0
+focus_neighbor_top = NodePath("../quit_button")
+focus_neighbor_bottom = NodePath("../options_button")
+text = "PLAY"
+
+[node name="options_button" parent="menu_slide/main_menu" instance=ExtResource("2_48xlc")]
+layout_mode = 0
+offset_left = -110.0
+offset_top = 300.0
+offset_right = 490.0
+offset_bottom = 380.0
+focus_neighbor_top = NodePath("../play_button")
+focus_neighbor_bottom = NodePath("../quit_button")
+text = "OPTIONS"
+
+[node name="quit_button" parent="menu_slide/main_menu" instance=ExtResource("2_48xlc")]
+layout_mode = 0
+offset_left = -110.0
+offset_top = 400.0
+offset_right = 490.0
+offset_bottom = 480.0
+focus_neighbor_top = NodePath("../options_button")
+focus_neighbor_bottom = NodePath("../play_button")
+text = "QUIT"
+
+[node name="song_select" type="Control" parent="menu_slide"]
+anchors_preset = 0
+offset_left = 1920.0
+offset_right = 3840.0
+offset_bottom = 1080.0
+
+[node name="songs" type="TabContainer" parent="menu_slide/song_select"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 175.0
+offset_right = 680.0
+offset_bottom = 625.0
+rotation = -0.0349066
+focus_mode = 2
+theme = ExtResource("6_opfnp")
+theme_override_font_sizes/font_size = 19
+script = ExtResource("7_yhxw7")
+
+[connection signal="pressed" from="menu_slide/main_menu/play_button" to="menu_slide" method="_on_play_button_pressed"]
+[connection signal="pressed" from="menu_slide/main_menu/quit_button" to="menu_slide" method="_on_quit_button_pressed"]
