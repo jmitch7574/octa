@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqtnn5npk7uux"]
+[gd_scene load_steps=9 format=3 uid="uid://dqtnn5npk7uux"]
 
 [ext_resource type="Script" uid="uid://5biej033r2fe" path="res://Scripts/main_menu.gd" id="1_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://bcvu088aag71v" path="res://octa_logo.png" id="1_28flt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://iflirx14h2tq" path="res://Scripts/octa_logo.gd" id="3_n45e2"]
 [ext_resource type="AudioStream" uid="uid://d36igf1o5a3c4" path="res://main-menu.wav" id="4_ce3w2"]
 [ext_resource type="Theme" uid="uid://chgucbdjf0cau" path="res://octaTheme.tres" id="6_opfnp"]
+[ext_resource type="Script" uid="uid://bs10kagcq3opw" path="res://Scripts/song_back_button.gd" id="6_yhxw7"]
 [ext_resource type="Script" uid="uid://dxafs5mashgpq" path="res://Scripts/fill_songs.gd" id="7_yhxw7"]
 
 [node name="MainMenu" type="Control"]
@@ -13,15 +14,17 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 768.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="background" type="ColorRect" parent="."]
 z_index = -2
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_left = -40.0
+offset_right = 1923.0
+offset_bottom = 1140.0
 color = Color(0.0605294, 0.0901199, 0.203326, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -30,7 +33,6 @@ offset_left = -5.0
 offset_top = -11.0
 offset_right = 1915.0
 offset_bottom = 128.0
-rotation = -0.0350164
 color = Color(0.0276939, 0.102486, 0.308731, 1)
 
 [node name="OctaLogo" type="Sprite2D" parent="."]
@@ -65,6 +67,7 @@ offset_left = -110.0
 offset_top = 200.0
 offset_right = 490.0
 offset_bottom = 280.0
+rotation = 0.0
 focus_neighbor_top = NodePath("../quit_button")
 focus_neighbor_bottom = NodePath("../options_button")
 text = "PLAY"
@@ -75,6 +78,7 @@ offset_left = -110.0
 offset_top = 300.0
 offset_right = 490.0
 offset_bottom = 380.0
+rotation = 0.0
 focus_neighbor_top = NodePath("../play_button")
 focus_neighbor_bottom = NodePath("../quit_button")
 text = "OPTIONS"
@@ -85,6 +89,7 @@ offset_left = -110.0
 offset_top = 400.0
 offset_right = 490.0
 offset_bottom = 480.0
+rotation = 0.0
 focus_neighbor_top = NodePath("../options_button")
 focus_neighbor_bottom = NodePath("../play_button")
 text = "QUIT"
@@ -95,17 +100,89 @@ offset_left = 1920.0
 offset_right = 3840.0
 offset_bottom = 1080.0
 
+[node name="back_button" parent="menu_slide/song_select" instance=ExtResource("2_48xlc")]
+layout_mode = 0
+offset_left = -101.0
+offset_top = 170.0
+offset_right = 499.0
+offset_bottom = 250.0
+rotation = 0.0
+text = "BACK"
+script = ExtResource("6_yhxw7")
+
 [node name="songs" type="TabContainer" parent="menu_slide/song_select"]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 175.0
-offset_right = 680.0
-offset_bottom = 625.0
-rotation = -0.0349066
+offset_left = 37.0
+offset_top = 300.0
+offset_right = 687.0
+offset_bottom = 975.0
 focus_mode = 2
 theme = ExtResource("6_opfnp")
 theme_override_font_sizes/font_size = 19
 script = ExtResource("7_yhxw7")
 
+[node name="difficulties" type="TabContainer" parent="menu_slide/song_select"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 725.0
+offset_top = 300.0
+offset_right = -867.0
+offset_bottom = -105.0
+focus_mode = 2
+theme = ExtResource("6_opfnp")
+theme_override_font_sizes/font_size = 19
+current_tab = 0
+
+[node name="difficulties" type="Control" parent="menu_slide/song_select/difficulties"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="songInfo" type="TabContainer" parent="menu_slide/song_select"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1089.0
+offset_top = 300.0
+offset_right = -155.0
+offset_bottom = -105.0
+focus_mode = 2
+theme = ExtResource("6_opfnp")
+theme_override_font_sizes/font_size = 19
+current_tab = 0
+
+[node name="Song Info" type="Control" parent="menu_slide/song_select/songInfo"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ColorRect" type="ColorRect" parent="menu_slide/song_select"]
+visible = false
+z_index = 1
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 161.0
+offset_top = 920.0
+offset_right = -1119.0
+offset_bottom = -116.0
+rotation = -0.0349066
+color = Color(0.0235294, 0.0470588, 0.145098, 1)
+metadata/_tab_index = 0
+
+[node name="ColorRect2" type="ColorRect" parent="menu_slide/song_select"]
+visible = false
+z_index = 1
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 139.0
+offset_top = 337.0
+offset_right = -1139.0
+offset_bottom = -717.0
+rotation = -0.0349066
+color = Color(0.0235294, 0.0470588, 0.145098, 1)
+metadata/_tab_index = 0
+
 [connection signal="pressed" from="menu_slide/main_menu/play_button" to="menu_slide" method="_on_play_button_pressed"]
 [connection signal="pressed" from="menu_slide/main_menu/quit_button" to="menu_slide" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="menu_slide/song_select/back_button" to="menu_slide" method="_on_back_button_pressed"]

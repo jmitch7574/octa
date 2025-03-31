@@ -42,7 +42,7 @@ static func read_song_file(filePath: String) -> SongData:
 			continue
 
 		if line.begins_with("#TITLE:"):
-			data.name = line.substr(7, line.length()).strip_edges()
+			data.name = line.substr(7, line.length()).strip_edges() + str(randi_range(0, 1000))
 			print("NAME FOUND: " + data.name)
 		elif line.begins_with("#ARTIST:"):
 			data.artist = line.substr(8, line.length()).strip_edges()

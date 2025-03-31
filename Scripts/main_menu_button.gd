@@ -15,7 +15,7 @@ func _process(delta):
 
 func enter():
 	particles.emitting = true
-	targetPos = basePos + Vector2(100, -3)
+	targetPos = basePos + Vector2(100, 0)
 
 func exit():
 	particles.emitting = false
