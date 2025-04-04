@@ -120,101 +120,88 @@ theme = ExtResource("6_opfnp")
 theme_override_font_sizes/font_size = 19
 script = ExtResource("7_yhxw7")
 
-[node name="difficulty_label" type="Label" parent="menu_slide/song_select"]
-layout_mode = 0
-offset_left = 712.0
-offset_top = 295.0
-offset_right = 988.0
-offset_bottom = 322.0
+[node name="difficulties" type="TabContainer" parent="menu_slide/song_select"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 725.0
+offset_top = 300.0
+offset_right = -695.0
+offset_bottom = -105.0
+focus_mode = 2
 theme = ExtResource("6_opfnp")
-theme_override_font_sizes/font_size = 28
-text = "DIFFICULTIES"
+theme_override_font_sizes/font_size = 19
+current_tab = 0
 
-[node name="Difficulties" type="PanelContainer" parent="menu_slide/song_select"]
-layout_mode = 0
-offset_left = 701.0
-offset_top = 333.0
-offset_right = 1203.0
-offset_bottom = 975.0
-theme = ExtResource("6_opfnp")
-
-[node name="Difficulty" type="MarginContainer" parent="menu_slide/song_select/Difficulties"]
+[node name="Difficulty" type="MarginContainer" parent="menu_slide/song_select/difficulties"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 35
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 35
+metadata/_tab_index = 0
 
-[node name="HFlowContainer" type="HFlowContainer" parent="menu_slide/song_select/Difficulties/Difficulty"]
+[node name="HFlowContainer" type="HFlowContainer" parent="menu_slide/song_select/difficulties/Difficulty"]
 layout_mode = 2
 theme_override_constants/v_separation = 20
 
-[node name="song_info_label" type="Label" parent="menu_slide/song_select"]
-layout_mode = 0
-offset_left = 1234.0
-offset_top = 295.0
-offset_right = 1510.0
-offset_bottom = 328.0
-theme = ExtResource("6_opfnp")
-theme_override_font_sizes/font_size = 28
-text = "song info"
-
-[node name="Song Info" type="Control" parent="menu_slide/song_select"]
+[node name="songInfo" type="TabContainer" parent="menu_slide/song_select"]
 layout_mode = 2
-anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1227.0
-offset_top = 333.0
-offset_right = -75.0
+offset_left = 1252.0
+offset_top = 300.0
+offset_right = -155.0
 offset_bottom = -105.0
-
-[node name="Panel" type="Panel" parent="menu_slide/song_select/Song Info"]
-layout_mode = 0
-offset_right = 618.0
-offset_bottom = 642.0
+focus_mode = 2
 theme = ExtResource("6_opfnp")
+theme_override_font_sizes/font_size = 19
+current_tab = 0
 
-[node name="titles_flow" type="VFlowContainer" parent="menu_slide/song_select/Song Info"]
+[node name="Song Info" type="Control" parent="menu_slide/song_select/songInfo"]
 layout_mode = 2
-offset_top = 69.0
-offset_right = 618.0
-offset_bottom = 297.0
+metadata/_tab_index = 0
+
+[node name="titles_flow" type="VFlowContainer" parent="menu_slide/song_select/songInfo/Song Info"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 23.0
+offset_right = 472.0
+offset_bottom = 430.0
 theme_override_constants/v_separation = 20
 
-[node name="song_name" type="Label" parent="menu_slide/song_select/Song Info/titles_flow"]
-custom_minimum_size = Vector2(618, 1)
+[node name="song_name" type="Label" parent="menu_slide/song_select/songInfo/Song Info/titles_flow"]
+custom_minimum_size = Vector2(450, 1)
 layout_mode = 2
 theme = ExtResource("6_opfnp")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="song_artist" type="Label" parent="menu_slide/song_select/Song Info/titles_flow"]
-custom_minimum_size = Vector2(618, 1)
-layout_mode = 2
-theme = ExtResource("6_opfnp")
-theme_override_colors/font_color = Color(0.398764, 0.516903, 0.860935, 1)
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="song_bpm" type="Label" parent="menu_slide/song_select/Song Info/titles_flow"]
-custom_minimum_size = Vector2(618, 1)
+[node name="song_artist" type="Label" parent="menu_slide/song_select/songInfo/Song Info/titles_flow"]
+custom_minimum_size = Vector2(450, 1)
 layout_mode = 2
 theme = ExtResource("6_opfnp")
 theme_override_colors/font_color = Color(0.398764, 0.516903, 0.860935, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="TextureRect" type="TextureRect" parent="menu_slide/song_select/Song Info"]
+[node name="song_bpm" type="Label" parent="menu_slide/song_select/songInfo/Song Info/titles_flow"]
+custom_minimum_size = Vector2(450, 1)
 layout_mode = 2
-offset_left = 18.0
-offset_top = 256.0
-offset_right = 597.0
-offset_bottom = 617.0
-tooltip_text = "asdf"
+theme = ExtResource("6_opfnp")
+theme_override_colors/font_color = Color(0.398764, 0.516903, 0.860935, 1)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="menu_slide/song_select/songInfo/Song Info"]
+layout_mode = 2
+offset_left = 32.0
+offset_top = 438.0
+offset_right = 483.0
+offset_bottom = 618.0
 expand_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="menu_slide/song_select"]

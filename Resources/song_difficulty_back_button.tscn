@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvmvq4j0qm0mu"]
+
+[ext_resource type="Script" uid="uid://dkv5urcxeob1j" path="res://Scripts/song_difficulty_back_button.gd" id="1_wmc4m"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(460, 50)
+theme_override_font_sizes/font_size = 32
+text = "Hard | ★★★"
+text_overrun_behavior = 3
+script = ExtResource("1_wmc4m")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

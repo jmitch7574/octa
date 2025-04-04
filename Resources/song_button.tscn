@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bs0kyoli8e0fg"]
+[gd_scene load_steps=2 format=3 uid="uid://bs0kyoli8e0fg"]
+
+[ext_resource type="Script" uid="uid://bn56psgnegplk" path="res://Scripts/song_button.gd" id="1_a712u"]
 
 [node name="song_button" type="Button"]
 clip_contents = true
@@ -7,3 +9,7 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 32
 text = "The LEGEnd of grooby"
 text_overrun_behavior = 3
+script = ExtResource("1_a712u")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

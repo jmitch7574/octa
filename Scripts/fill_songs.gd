@@ -2,6 +2,7 @@ extends TabContainer
 
 const SONG_BUTTON = preload("res://Resources/song_button.tscn")
 const PACK_CONTAINER = preload("res://Resources/pack_container.tscn")
+@onready var song_select: Control = $".."
 
 func _ready() -> void:
 	var songs = SongLoader.get_songs()
@@ -16,3 +17,5 @@ func _ready() -> void:
 			new_song_item.name = song.name
 			new_pack_container.get_child(0).get_child(0).add_child(new_song_item)
 			new_song_item.text = song.name
+			new_song_item.song_data = song
+			new_song_item.song_menu_script = song_select

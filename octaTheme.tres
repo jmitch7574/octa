@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=51 format=3 uid="uid://chgucbdjf0cau"]
+[gd_resource type="Theme" load_steps=52 format=3 uid="uid://chgucbdjf0cau"]
 
 [ext_resource type="FontFile" uid="uid://bn500nbbq4uls" path="res://Squares Bold Free.otf" id="1_womdl"]
 
@@ -254,7 +254,29 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmcjw"]
-bg_color = Color(0.124351, 0.180097, 0.39746, 1)
+bg_color = Color(0.0235294, 0.0470588, 0.145098, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.443137, 0.572549, 0.898039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyh0x"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.0235294, 0.0470588, 0.145098, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.443137, 0.572549, 0.898039, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="Image" id="Image_knfky"]
 data = {
@@ -485,6 +507,7 @@ HSlider/icons/tick = SubResource("ImageTexture_qxlgv")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_d7qmt")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_frhyj")
 HSlider/styles/slider = SubResource("StyleBoxFlat_oeonf")
+Label/colors/font_color = Color(0.647059, 0.729412, 0.941176, 1)
 MenuBar/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 MenuBar/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 MenuBar/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -499,6 +522,7 @@ MenuBar/styles/hover = SubResource("StyleBoxFlat_bwpuo")
 MenuBar/styles/normal = SubResource("StyleBoxFlat_fxqh2")
 MenuBar/styles/pressed = SubResource("StyleBoxFlat_y6psq")
 Panel/styles/panel = SubResource("StyleBoxFlat_pmcjw")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_xyh0x")
 TabBar/colors/drop_mark_color = Color(1, 1, 1, 1)
 TabBar/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 TabBar/colors/font_hovered_color = Color(0.95, 0.95, 0.95, 1)

@@ -33,6 +33,8 @@ static func read_song_file(filePath: String) -> SongData:
 	var data: SongData = SongData.new()
 	var current_difficulty : MapData
 	var reading_notes: bool
+	
+	data.path = filePath.get_base_dir() + "/"
 		
 	while file.eof_reached() == false:
 		var line = file.get_line().strip_edges()
@@ -48,6 +50,8 @@ static func read_song_file(filePath: String) -> SongData:
 			data.artist = line.substr(8, line.length()).strip_edges()
 		elif line.begins_with("#BPM:"):
 			data.bpm = line.substr(5, line.length()).strip_edges().to_float()
+		elif line.begins_with("#PREVIEW:"):
+			data.image_preview = line.substr(9, line.length()).strip_edges()
 		elif line.begins_with("#DIFFICULTY:"):
 			var difficulty_name = line.substr(12, line.length()).strip_edges()
 			current_difficulty = MapData.new()
