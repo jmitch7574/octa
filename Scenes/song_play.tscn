@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bt1wijjlasvpe"]
+
+[node name="SongPlay" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.108721, 0.108721, 0.108721, 1)
+
+[node name="Octagon" type="Line2D" parent="."]
+texture_filter = 3
+texture_repeat = 1
+position = Vector2(960, 540)
+scale = Vector2(5.89091, 5.89091)
+points = PackedVector2Array(0, -50, 35.36, -35.36, 50, 0, 35.36, 35.36, 0, 50, -35.36, 35.36, -50, 0, -35.36, -35.36, 0, -50, 35.36, -35.36)
+width = 2.0
