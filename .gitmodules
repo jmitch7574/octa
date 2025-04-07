@@ -1,0 +1,3 @@
+[submodule "octa-songlist"]
+	path = octa-songlist
+	url = https://github.com/jmitch7574/octa-songlist
