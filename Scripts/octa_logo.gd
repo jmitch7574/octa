@@ -6,7 +6,7 @@ func _ready():
 	initialScale = scale
 	punch_loop()
 
-func _process(delta):
+func _process(_delta):
 	scale = scale.lerp(initialScale, 0.2)
 	
 func punch_loop():

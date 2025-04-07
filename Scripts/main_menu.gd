@@ -1,4 +1,7 @@
 extends Control
+class_name MainMenu
+
+static var instance: MainMenu
 
 # Main menu buttons
 @onready var play_button: Button = $main_menu/play_button
@@ -14,6 +17,7 @@ extends Control
 # Song Select Section
 @onready var song_back_button: Button = $song_select/back_button
 
+var targetPos: Vector2
 
 var sub_menu : bool = false
 
@@ -21,14 +25,18 @@ func _ready() -> void:
 	hide_all()
 	main_menu.visible = true
 	play_button.grab_focus()
+	targetPos = Vector2(0, 0)
+	instance = self
 
 func _process(_delta):
-	var targetPos =  Vector2(-1920, 0) if sub_menu else Vector2(0, 0) 
 	position = position.lerp(targetPos, 0.1)
 
 func hide_all():
 	main_menu.visible = false
 	song_select.visible = false
+
+func exit_to_song():
+	GameReferee.instance.load_song()
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
@@ -38,9 +46,11 @@ func _on_play_button_pressed() -> void:
 	song_select.visible = true
 	sub_menu = true
 	back_button.grab_focus()
+	targetPos = Vector2(-1920, 0)
 
 func _on_back_button_pressed() -> void:
 	hide_all()
 	main_menu.visible = true
 	sub_menu = false
 	play_button.grab_focus()
+	targetPos = Vector2(0, 0)

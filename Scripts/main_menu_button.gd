@@ -3,22 +3,24 @@ extends Button
 var targetPos
 var basePos
 
-@onready var particles: CPUParticles2D = $CPUParticles2D
+@onready var particles: Array[CPUParticles2D] = [$CPUParticles2D, $CPUParticles2D2]
 
 func _ready() -> void:
-	basePos = position
-	targetPos = position
+	basePos = scale
+	targetPos = scale
 	exit()
 
-func _process(delta):
-	position = position.lerp(targetPos, 0.1)
+func _process(_delta):
+	scale = scale.lerp(targetPos, 0.1)
 
 func enter():
-	particles.emitting = true
-	targetPos = basePos + Vector2(100, 0)
+	for particle in particles:
+		particle.emitting = true
+	targetPos = basePos * 1.1
 
 func exit():
-	particles.emitting = false
+	for particle in particles:
+		particle.emitting = false
 	targetPos = basePos
 
 func _on_focus_entered() -> void:

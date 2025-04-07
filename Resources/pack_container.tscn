@@ -2,6 +2,8 @@
 
 [node name="MarginContainer" type="MarginContainer"]
 clip_contents = true
+offset_right = 640.0
+offset_bottom = 70.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 35
 theme_override_constants/margin_right = 20
@@ -14,8 +16,15 @@ follow_focus = true
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
-[node name="HFlow" type="HFlowContainer" parent="ScrollContainer"]
-clip_contents = true
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="HFlow" type="HFlowContainer" parent="ScrollContainer/MarginContainer"]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme_override_constants/v_separation = 20

@@ -1,13 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqtnn5npk7uux"]
+[gd_scene load_steps=14 format=3 uid="uid://dqtnn5npk7uux"]
 
 [ext_resource type="Script" uid="uid://5biej033r2fe" path="res://Scripts/main_menu.gd" id="1_1ehe0"]
+[ext_resource type="Shader" uid="uid://cm8iesb42o2n3" path="res://Shaders/Blur.gdshader" id="1_16hvj"]
 [ext_resource type="Texture2D" uid="uid://bcvu088aag71v" path="res://octa_logo.png" id="1_28flt"]
+[ext_resource type="Texture2D" uid="uid://bioltp4eg05pu" path="res://Sprites/Octagon.png" id="1_vr1f0"]
 [ext_resource type="PackedScene" uid="uid://dmbcibq55ymqq" path="res://Resources/MainMenuButton/menu_button.tscn" id="2_48xlc"]
 [ext_resource type="Script" uid="uid://iflirx14h2tq" path="res://Scripts/octa_logo.gd" id="3_n45e2"]
 [ext_resource type="AudioStream" uid="uid://d36igf1o5a3c4" path="res://main-menu.wav" id="4_ce3w2"]
-[ext_resource type="Theme" uid="uid://chgucbdjf0cau" path="res://octaTheme.tres" id="6_opfnp"]
+[ext_resource type="Material" uid="uid://dtjfpnltmrypo" path="res://Shaders/BlurMaterial.tres" id="6_t1dhk"]
 [ext_resource type="Script" uid="uid://nruu8lhn4w3s" path="res://Scripts/song_select_area.gd" id="6_trj04"]
+[ext_resource type="Theme" uid="uid://ddt7f1d8nmrcc" path="res://octaThemeNew.tres" id="7_vr1f0"]
 [ext_resource type="Script" uid="uid://dxafs5mashgpq" path="res://Scripts/fill_songs.gd" id="7_yhxw7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t1dhk"]
+shader = ExtResource("1_16hvj")
+shader_parameter/tint_color = Color(1, 1, 1, 0.2)
+shader_parameter/blur_amount = 4.0
+shader_parameter/border_size = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yhxw7"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -19,27 +30,45 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="background" type="ColorRect" parent="."]
-z_index = -2
-layout_mode = 0
-offset_left = -40.0
-offset_right = 1923.0
-offset_bottom = 1140.0
-color = Color(0.0605294, 0.0901199, 0.203326, 1)
+[node name="Background" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="Background"]
 layout_mode = 0
-offset_left = -5.0
-offset_top = -11.0
+offset_right = 1918.0
+offset_bottom = 1078.0
+color = Color(0, 0, 0, 0.701961)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background"]
+position = Vector2(-900, 540)
+amount = 16
+texture = ExtResource("1_vr1f0")
+lifetime = 8.0
+preprocess = 5.0
+randomness = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(10, 540)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 1200.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+scale_amount_min = 0.5
+scale_amount_max = 5.0
+
+[node name="top_blur" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_t1dhk")
+layout_mode = 0
 offset_right = 1915.0
-offset_bottom = 128.0
-color = Color(0.0276939, 0.102486, 0.308731, 1)
+offset_bottom = 137.0
 
 [node name="OctaLogo" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(173, 61)
-rotation = -0.00872665
-scale = Vector2(0.153333, 0.153333)
+position = Vector2(960.516, 70.6811)
+rotation = 0.0349066
+scale = Vector2(0.201568, 0.20265)
 texture = ExtResource("1_28flt")
 script = ExtResource("3_n45e2")
 
@@ -54,41 +83,45 @@ anchors_preset = 0
 offset_right = 2840.0
 offset_bottom = 1080.0
 script = ExtResource("1_1ehe0")
+metadata/_edit_lock_ = true
 
-[node name="main_menu" type="Control" parent="menu_slide"]
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+[node name="main_menu" type="Panel" parent="menu_slide"]
+material = ExtResource("6_t1dhk")
+clip_contents = true
+layout_mode = 0
+offset_left = 460.0
+offset_top = 337.0
+offset_right = 1435.0
+offset_bottom = 721.0
+theme = ExtResource("7_vr1f0")
 
 [node name="play_button" parent="menu_slide/main_menu" instance=ExtResource("2_48xlc")]
+material = SubResource("ShaderMaterial_yhxw7")
 layout_mode = 0
-offset_left = -110.0
-offset_top = 200.0
-offset_right = 490.0
-offset_bottom = 280.0
-rotation = 0.0
+offset_left = 185.0
+offset_top = 48.0
+offset_right = 785.0
+offset_bottom = 128.0
 focus_neighbor_top = NodePath("../quit_button")
 focus_neighbor_bottom = NodePath("../options_button")
 text = "PLAY"
 
 [node name="options_button" parent="menu_slide/main_menu" instance=ExtResource("2_48xlc")]
 layout_mode = 0
-offset_left = -110.0
-offset_top = 300.0
-offset_right = 490.0
-offset_bottom = 380.0
-rotation = 0.0
+offset_left = 185.0
+offset_top = 148.0
+offset_right = 785.0
+offset_bottom = 228.0
 focus_neighbor_top = NodePath("../play_button")
 focus_neighbor_bottom = NodePath("../quit_button")
 text = "OPTIONS"
 
 [node name="quit_button" parent="menu_slide/main_menu" instance=ExtResource("2_48xlc")]
 layout_mode = 0
-offset_left = -110.0
-offset_top = 400.0
-offset_right = 490.0
-offset_bottom = 480.0
-rotation = 0.0
+offset_left = 185.0
+offset_top = 248.0
+offset_right = 785.0
+offset_bottom = 328.0
 focus_neighbor_top = NodePath("../options_button")
 focus_neighbor_bottom = NodePath("../play_button")
 text = "QUIT"
@@ -102,21 +135,21 @@ script = ExtResource("6_trj04")
 
 [node name="back_button" parent="menu_slide/song_select" instance=ExtResource("2_48xlc")]
 layout_mode = 0
-offset_left = -101.0
+offset_left = 127.0
 offset_top = 170.0
-offset_right = 499.0
+offset_right = 736.0
 offset_bottom = 250.0
-rotation = 0.0
 text = "BACK"
 
 [node name="songs" type="TabContainer" parent="menu_slide/song_select"]
+material = ExtResource("6_t1dhk")
 layout_mode = 0
 offset_left = 37.0
 offset_top = 300.0
 offset_right = 687.0
 offset_bottom = 975.0
 focus_mode = 2
-theme = ExtResource("6_opfnp")
+theme = ExtResource("7_vr1f0")
 theme_override_font_sizes/font_size = 19
 script = ExtResource("7_yhxw7")
 
@@ -126,20 +159,23 @@ offset_left = 712.0
 offset_top = 295.0
 offset_right = 988.0
 offset_bottom = 322.0
-theme = ExtResource("6_opfnp")
+theme = ExtResource("7_vr1f0")
 theme_override_font_sizes/font_size = 28
 text = "DIFFICULTIES"
 
-[node name="Difficulties" type="PanelContainer" parent="menu_slide/song_select"]
+[node name="Difficulties" type="Panel" parent="menu_slide/song_select"]
+material = ExtResource("6_t1dhk")
 layout_mode = 0
 offset_left = 701.0
 offset_top = 333.0
 offset_right = 1203.0
 offset_bottom = 975.0
-theme = ExtResource("6_opfnp")
+theme = ExtResource("7_vr1f0")
 
 [node name="Difficulty" type="MarginContainer" parent="menu_slide/song_select/Difficulties"]
 layout_mode = 2
+offset_right = 502.0
+offset_bottom = 642.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 35
 theme_override_constants/margin_right = 20
@@ -155,60 +191,55 @@ offset_left = 1234.0
 offset_top = 295.0
 offset_right = 1510.0
 offset_bottom = 328.0
-theme = ExtResource("6_opfnp")
+theme = ExtResource("7_vr1f0")
 theme_override_font_sizes/font_size = 28
 text = "song info"
 
-[node name="Song Info" type="Control" parent="menu_slide/song_select"]
+[node name="SongInfo" type="Panel" parent="menu_slide/song_select"]
+material = ExtResource("6_t1dhk")
 layout_mode = 2
-anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1227.0
 offset_top = 333.0
 offset_right = -75.0
 offset_bottom = -105.0
+theme = ExtResource("7_vr1f0")
 
-[node name="Panel" type="Panel" parent="menu_slide/song_select/Song Info"]
-layout_mode = 0
-offset_right = 618.0
-offset_bottom = 642.0
-theme = ExtResource("6_opfnp")
-
-[node name="titles_flow" type="VFlowContainer" parent="menu_slide/song_select/Song Info"]
+[node name="titles_flow" type="VFlowContainer" parent="menu_slide/song_select/SongInfo"]
 layout_mode = 2
 offset_top = 69.0
 offset_right = 618.0
 offset_bottom = 297.0
 theme_override_constants/v_separation = 20
 
-[node name="song_name" type="Label" parent="menu_slide/song_select/Song Info/titles_flow"]
+[node name="song_name" type="Label" parent="menu_slide/song_select/SongInfo/titles_flow"]
 custom_minimum_size = Vector2(618, 1)
 layout_mode = 2
-theme = ExtResource("6_opfnp")
+theme = ExtResource("7_vr1f0")
 theme_override_font_sizes/font_size = 36
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="song_artist" type="Label" parent="menu_slide/song_select/Song Info/titles_flow"]
+[node name="song_artist" type="Label" parent="menu_slide/song_select/SongInfo/titles_flow"]
 custom_minimum_size = Vector2(618, 1)
 layout_mode = 2
-theme = ExtResource("6_opfnp")
-theme_override_colors/font_color = Color(0.398764, 0.516903, 0.860935, 1)
+theme = ExtResource("7_vr1f0")
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="song_bpm" type="Label" parent="menu_slide/song_select/Song Info/titles_flow"]
+[node name="song_bpm" type="Label" parent="menu_slide/song_select/SongInfo/titles_flow"]
 custom_minimum_size = Vector2(618, 1)
 layout_mode = 2
-theme = ExtResource("6_opfnp")
-theme_override_colors/font_color = Color(0.398764, 0.516903, 0.860935, 1)
+theme = ExtResource("7_vr1f0")
+theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="TextureRect" type="TextureRect" parent="menu_slide/song_select/Song Info"]
+[node name="TextureRect" type="TextureRect" parent="menu_slide/song_select/SongInfo"]
 layout_mode = 2
 offset_left = 18.0
 offset_top = 256.0

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dtjfpnltmrypo"]
+
+[ext_resource type="Shader" uid="uid://cm8iesb42o2n3" path="res://Shaders/Blur.gdshader" id="1_a7h4i"]
+
+[resource]
+shader = ExtResource("1_a7h4i")
+shader_parameter/tint_color = Color(1, 1, 1, 0.2)
+shader_parameter/blur_amount = 4.0
+shader_parameter/border_size = 0.01

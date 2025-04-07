@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://5kyxf1d6poe4"]
+[gd_scene load_steps=3 format=3 uid="uid://5kyxf1d6poe4"]
 
 [ext_resource type="Script" uid="uid://3lt7bj2nirxm" path="res://Scripts/song_difficulty_button.gd" id="1_14qoh"]
+[ext_resource type="Theme" uid="uid://ddt7f1d8nmrcc" path="res://octaThemeNew.tres" id="1_temeo"]
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(460, 50)
+theme = ExtResource("1_temeo")
 theme_override_font_sizes/font_size = 32
 text = "Hard | ★★★"
 text_overrun_behavior = 3

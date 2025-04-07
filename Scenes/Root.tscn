@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://jxrquhqkben0"]
+
+[ext_resource type="Script" uid="uid://ceb05850ghixp" path="res://Scripts/game_referee.gd" id="1_kqog5"]
+[ext_resource type="FontFile" uid="uid://c4rlvm37hioqq" path="res://PixelifySans-VariableFont_wght.ttf" id="2_kqog5"]
+
+[node name="Root" type="Node"]
+script = ExtResource("1_kqog5")
+
+[node name="FadeBar" type="ColorRect" parent="."]
+top_level = true
+visibility_layer = 2
+z_index = 5
+z_as_relative = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+metadata/dontDestroy = false
+
+[node name="Label" type="Label" parent="FadeBar"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_fonts/font = ExtResource("2_kqog5")
+theme_override_font_sizes/font_size = 72
+text = "LOADING"
+horizontal_alignment = 1
+vertical_alignment = 1
