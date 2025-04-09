@@ -6,7 +6,7 @@ var name: String
 var artist: String
 var image_preview: String
 var audio_file: String
-var bpm: int
+var bpm: float
 var length: float
 var offset: float
 var path: String

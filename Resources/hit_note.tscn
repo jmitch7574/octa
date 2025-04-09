@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c74hd42852yaj"]
+
+[ext_resource type="Script" uid="uid://bfdb5jrfsshtu" path="res://Scripts/note.gd" id="1_h8dkl"]
+
+[node name="HitNote" type="Node2D"]
+script = ExtResource("1_h8dkl")
+
+[node name="Octagon" type="Line2D" parent="."]
+texture_filter = 3
+texture_repeat = 1
+scale = Vector2(4.5, 4.5)
+points = PackedVector2Array(0, -50, 35.36, -35.36, 50, 0)
+width = 5.0
+default_color = Color(1, 0.35, 0.35, 1)

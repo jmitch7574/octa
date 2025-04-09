@@ -1,23 +1,26 @@
 class_name SongLoader 
 extends Node
 
+static var hit_note_regex = r"^-?\d+(\.\d+)?$"
+static var hold_note_regex = r"^-?\d+(\.\d+)?--?\d+(\.\d+)?$"
+
 static func get_songs():
 	var songs = {}
 	
-	var dir = DirAccess.open("user://Songs/")
+	var dir = DirAccess.open("res://octa-songlist/")
 	
 	var packs = dir.get_directories()
 	
 	for pack in packs:
 		songs[pack] = []
-		dir.change_dir("user://Songs/" + pack + "/")
+		dir.change_dir("res://octa-songlist/" + pack + "/")
 		var sub_dirs = dir.get_directories()
 		for song in sub_dirs:
-			dir.change_dir("user://Songs/" + pack + "/" + song + "/")
+			dir.change_dir("res://octa-songlist/" + pack + "/" + song + "/")
 			for file in dir.get_files():
 				print(file)
 				if file.ends_with(".octa"):
-					var parsed_data = read_song_file("user://Songs/" + pack + "/" + song + "/" + file)
+					var parsed_data = read_song_file("res://octa-songlist/" + pack + "/" + song + "/" + file)
 					if parsed_data != null:
 						songs[pack].append(parsed_data)
 		
@@ -25,6 +28,13 @@ static func get_songs():
 
 
 static func read_song_file(filePath: String) -> SongData:
+		
+	var hit_note_regex_var = RegEx.new()
+	var hold_note_regex_var = RegEx.new()
+
+	hit_note_regex_var.compile(hit_note_regex)
+	hold_note_regex_var.compile(hold_note_regex)
+	
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	if file == null:
 		print("Failed to open beatmap file")
@@ -52,6 +62,8 @@ static func read_song_file(filePath: String) -> SongData:
 			data.bpm = line.substr(5, line.length()).strip_edges().to_float()
 		elif line.begins_with("#PREVIEW:"):
 			data.image_preview = line.substr(9, line.length()).strip_edges()
+		elif line.begins_with("#AUDIO:"):
+			data.audio_file = line.substr(7, line.length()).strip_edges()
 		elif line.begins_with("#DIFFICULTY:"):
 			var difficulty_name = line.substr(12, line.length()).strip_edges()
 			current_difficulty = MapData.new()
@@ -66,14 +78,22 @@ static func read_song_file(filePath: String) -> SongData:
 		elif reading_notes:
 			# Parse the notes for the current difficulty
 			var note_data = line.split(",")
-			if note_data.size() == 4:
-				var time = note_data[0].to_float()
-				var direction = note_data[1].to_int()
-				var note_type = note_data[2]
-				var button_required = note_data[3].strip_edges()
+			if note_data.size() == 3:
+				var hitNote : NoteInfo
+				if hit_note_regex_var.search(note_data[0]):
+					hitNote = HitNote.new()
+					hitNote.hitBeat = note_data[0].to_float()
+				elif hold_note_regex_var.search(note_data[0]):
+					hitNote = HoldNote.new()
+					var data_split = note_data[0].split("-")
+					hitNote.holdStart = data_split[0].to_float()
+					hitNote.holdEnd = data_split[1].to_float()
+					
+				hitNote.direction = note_data[1].to_int()
+				hitNote.hitButton = note_data[2].strip_edges()
 
 				#var note = Note.new(time, direction, note_type, button_required)
-				#current_difficulty.notes.append(note)
+				current_difficulty.notes.append(hitNote)
 
 	file.close()
 	return data

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt1wijjlasvpe"]
+[gd_scene load_steps=6 format=3 uid="uid://bt1wijjlasvpe"]
 
-[ext_resource type="Script" uid="uid://dpghg0naiflq" path="res://Scenes/center_octagon.gd" id="1_1dcvd"]
+[ext_resource type="AudioStream" uid="uid://cb4rx4iqdsfir" path="res://octa-songlist/PackOne/Back2Back/02 Back 2 Back Sonic Rush OST.ogg" id="1_gcgvr"]
 [ext_resource type="Script" uid="uid://dqxo2knp20ne0" path="res://Scripts/note_spawner.gd" id="2_31hq4"]
 [ext_resource type="Script" uid="uid://hkmbicbl4ynl" path="res://Scripts/Metronome.gd" id="3_0k4ym"]
 [ext_resource type="Theme" uid="uid://ddt7f1d8nmrcc" path="res://octaThemeNew.tres" id="4_g1g0r"]
 [ext_resource type="Script" uid="uid://b288f201527ur" path="res://Scripts/Debug/current_beat.gd" id="5_1dcvd"]
-[ext_resource type="Script" uid="uid://cuc7duaajby1b" path="res://Scripts/judge.gd" id="5_g1g0r"]
 
 [node name="SongPlay" type="Node2D"]
 
@@ -15,6 +14,7 @@ offset_bottom = 1080.0
 color = Color(0.108721, 0.108721, 0.108721, 1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_gcgvr")
 
 [node name="Center" type="Node2D" parent="."]
 position = Vector2(960, 540)
@@ -26,15 +26,6 @@ texture_repeat = 1
 scale = Vector2(4.51923, 4.51923)
 points = PackedVector2Array(0, -50, 35.36, -35.36, 50, 0, 35.36, 35.36, 0, 50, -35.36, 35.36, -50, 0, -35.36, -35.36, 0, -50, 35.36, -35.36)
 width = 2.0
-
-[node name="Octagon2" type="Line2D" parent="Center"]
-texture_filter = 3
-texture_repeat = 1
-scale = Vector2(2.61538, 2.61538)
-points = PackedVector2Array(0, -50, 35.36, -35.36, 50, 0, 35.36, 35.36, 0, 50, -35.36, 35.36, -50, 0, -35.36, -35.36, 0, -50, 35.36, -35.36)
-width = 2.0
-default_color = Color(0.571649, 0.571649, 0.571649, 1)
-script = ExtResource("1_1dcvd")
 
 [node name="NoteSpawner" type="Node2D" parent="."]
 script = ExtResource("2_31hq4")
@@ -49,6 +40,3 @@ theme = ExtResource("4_g1g0r")
 theme_override_font_sizes/font_size = 64
 text = "asdfasdf"
 script = ExtResource("5_1dcvd")
-
-[node name="Judge" type="Node2D" parent="."]
-script = ExtResource("5_g1g0r")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8msbdtejlu4e"]
+
+[ext_resource type="Script" uid="uid://c2xslc3kr8qep" path="res://Scripts/hold_note.gd" id="1_leaq5"]
+
+[node name="HoldNote" type="Node2D"]
+script = ExtResource("1_leaq5")
+
+[node name="Octagon" type="Line2D" parent="."]
+texture_filter = 3
+texture_repeat = 1
+scale = Vector2(4.5, 4.5)
+points = PackedVector2Array(0, -50, 35.36, -35.36, 50, 0)
+width = 2.0

@@ -1,0 +1,2 @@
+extends NoteObject
+class_name HoldNoteObject

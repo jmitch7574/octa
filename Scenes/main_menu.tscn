@@ -246,7 +246,7 @@ offset_top = 256.0
 offset_right = 597.0
 offset_bottom = 617.0
 tooltip_text = "asdf"
-expand_mode = 1
+expand_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="menu_slide/song_select"]
 visible = false
